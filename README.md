@@ -13,13 +13,13 @@ Clone the repository and set up MongoDB first. In this project, MongoDB docker-c
 ```bash
   # To setup docker and docker-compose on Ubuntu.
 
-  cd wallet/mongodb
+  cd Employee-management/mongodb
   bash setup-docker-ubuntu.sh
 
   # To Run MongoDB 
   docker-compose --compatibility up -d
 ```
-Once your MongoDB will setup, you can run the wallet project and test APIs.
+Once your MongoDB will setup, you can run the Employee-management project and test APIs.
 
 ```bash
 # To Run project.
@@ -35,7 +35,7 @@ You can check the logs once the project will start.
 2023-05-10T11:40:41.110Z [service] [null] [Employee-management] [INFO] [index.js] App started on port 3000
 2023-05-10T11:40:41.136Z [service] [null] [Employee-management] [INFO] [mongodb-connection.js] Mongoose default connection is open to mongodb://localhost:24000/employee?authsource=admin
 ```
-<span style="color:red">NOTE: If MongoDB is already setup you can change the password inside 'wallet/config/default.json'</span>
+<span style="color:red">NOTE: If MongoDB is already setup you can change the password inside 'Employee-management/config/default.json'</span>
 
 https://github.com/mohanrana/Employee-management/blob/master/config/default.json
 
