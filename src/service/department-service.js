@@ -9,8 +9,9 @@ const saveDepartment = async (department) => {
     return response;
 };
 
-const getDepartment = async () => {
-    const response = await departmentRepository.getDepartmentInfo();
+const getDepartment = async (queryParams) => {
+    logger.debug('Query params are:', queryParams);
+    const response = await departmentRepository.getDepartmentInfo(queryParams);
     
      return response;
 };

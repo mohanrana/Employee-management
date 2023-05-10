@@ -18,3 +18,28 @@ exports.departmentDetailsValidation = async (req) => {
 
   return errors;
 };
+
+exports.getDepartmentValidation = async (req) => {
+  await check('page')
+    .exists()
+    .withMessage('page is required.')
+    .notEmpty()
+    .withMessage("page shouldn't be empty.")
+    .isNumeric()
+    .withMessage('page should be a number.')
+    .run(req);
+
+    await check('size')
+    .exists()
+    .withMessage('size is required.')
+    .notEmpty()
+    .withMessage("size shouldn't be empty.")
+    .isNumeric()
+    .withMessage('size should be a number.')
+    .run(req);
+
+  const errors = validationResult(req);
+  logger.debug(`Validators failure ${errors}`);
+
+  return errors;
+};

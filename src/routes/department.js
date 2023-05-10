@@ -21,8 +21,14 @@ router.post('/department', async (req, res, next) => {
 });
 
 router.get('/department', async (req, res, next) => {
+    // const errors = await validation.getDepartmentValidation(req);
+    // if (!errors.isEmpty()) {
+    //     logger.debug('Validation Errors are:', errors);
+
+    //     return next({ message: errors.array()[0].msg, statusCode: 400 });
+    // }
     try {
-        const response = await department.getDepartment(req.body);
+        const response = await department.getDepartment(req.query);
 
         res.status(200).json(response);
     } catch (error) {

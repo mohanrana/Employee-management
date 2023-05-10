@@ -20,9 +20,15 @@ router.post('/employee', async (req, res, next) => {
     }
 });
 
-router.get('/', async (req, res, next) => {
+router.get('/employee', async (req, res, next) => {
+    const errors = await validation.getEmployeDetailsValidation(req);
+    if (!errors.isEmpty()) {
+        logger.debug('Validation Errors are:', errors);
+
+        return next({ message: errors.array()[0].msg, statusCode: 400 });
+    }
     try {
-        const response = await employee.getEmployee(req.body);
+        const response = await employee.getEmployee(req.query);
 
         res.status(201).json(response);
     } catch (error) {

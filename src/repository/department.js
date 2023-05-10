@@ -22,7 +22,16 @@ const getDepartmentInfo = async () => {
     return result;
 };
 
+const getDepartmentByID = async (employee) => {
+    const query = { _id: employee.department_id};
+    const condition = { __v: 0 };
+    const response = await Department.find(query, condition);
+
+    return response;
+};
+
 module.exports = {
     saveDepartmentInfo,
-    getDepartmentInfo
+    getDepartmentInfo,
+    getDepartmentByID
 };
