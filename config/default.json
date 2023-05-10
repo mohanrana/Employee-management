@@ -1,8 +1,23 @@
 {
-    "server": {
-        "port": 3000
-    },
-    "database": {
-        "host": "mongodb://localhost:23000/test"
-    }
+  "server": {
+    "port": 3000,
+    "serviceName": "wallet",
+    "corsWhitelist": [
+      "localhost"
+    ]
+  },
+  "swagger-server": {
+    "url": "http://localhost:3000",
+    "corsWhitelist": [
+      "localhost"
+    ]
+  },
+  "logs": {
+    "level": "info"
+  },
+  "database": {
+    "uri": "mongodb://localhost:24000/employee?authsource=admin",
+    "username": "employee",
+    "password": "employee"
+  }
 }
