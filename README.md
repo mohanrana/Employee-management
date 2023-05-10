@@ -1,10 +1,52 @@
-1. Implement a REST API with Express Js to save or update an employee with fields => employee_id, first_name, last_name, email_address, department_id
-2. validate the request data as 
-    first_name : required
-    email_address : email address format
-    department_id : valid department id 
- [For departments take a departments collection in the database with some departments data with fields "id" and "department_name" and use this department collection to verify the department_id]
-3. save the data in mongo db
-4. Implement second REST API to return all saved employees data with department_name and allow a query parameter to filter the employees on the basis of first_name, last_name, email_address and department 
-5. configure Swagger for implemented API
-6. write e2e tests for both api 
+
+# Wallet 
+
+This project helps you to create REST APIs on the Node.Js Express server. This project has MVC architecture for creating REST APIs. This project has mainly three components Controller, services, and repository. The controller layer only takes care of API endpoints, the Service layer drives your business logic and the repository layer helps to interact with your database. Mongoosee ORM is used to interact with MongoDB.
+
+MongoDB is used as a database for storing employee and respective departements.
+
+
+## Installation
+
+Clone the repository and set up MongoDB first. In this project, MongoDB docker-compose.yml is present.  You can setup docker on Ubuntu by simply running a shell script as mentioned below.
+
+```bash
+  # To setup docker and docker-compose on Ubuntu.
+
+  cd wallet/mongodb
+  bash setup-docker-ubuntu.sh
+
+  # To Run MongoDB 
+  docker-compose --compatibility up -d
+```
+Once your MongoDB will setup, you can run the wallet project and test APIs.
+
+```bash
+# To Run project.
+cd wallet
+npm i
+npm run prod
+```
+You can check the logs once the project will start.
+```bash
+> test@1.0.0 prod
+> node index.js
+
+2023-05-10T11:31:08.628Z [service] [null] [wallet] [INFO] [index.js] App started on port 3000
+2023-05-10T11:31:08.653Z [service] [null] [wallet] [INFO] [mongodb-connection.js] Mongoose default connection is open to mongodb://localhost:24000/employee?authsource=admin
+```
+<span style="color:red">NOTE: If MongoDB is already setup you can change the password inside 'wallet/config/default.json'</span>
+
+https://github.com/mohanrana/Employee-management/blob/master/config/default.json
+
+## API Reference
+
+<span style="color:red">NOTE: Swagger has build for API documentation and API testing.</span>
+
+http://localhost:3000/swagger
+
+
+## Authors
+
+- [@mohanrana](https://github.com/mohanrana)
+
