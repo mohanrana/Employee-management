@@ -1,7 +1,7 @@
 {
   "server": {
     "port": 3000,
-    "serviceName": "wallet",
+    "serviceName": "Employee-management",
     "corsWhitelist": [
       "localhost"
     ]

@@ -1,5 +1,5 @@
 
-# Wallet 
+# Employee-management 
 
 This project helps you to create REST APIs on the Node.Js Express server. This project has MVC architecture for creating REST APIs. This project has mainly three components Controller, services, and repository. The controller layer only takes care of API endpoints, the Service layer drives your business logic and the repository layer helps to interact with your database. Mongoosee ORM is used to interact with MongoDB.
 
@@ -23,7 +23,7 @@ Once your MongoDB will setup, you can run the wallet project and test APIs.
 
 ```bash
 # To Run project.
-cd wallet
+cd Employee-management
 npm i
 npm run prod
 ```
@@ -32,8 +32,8 @@ You can check the logs once the project will start.
 > test@1.0.0 prod
 > node index.js
 
-2023-05-10T11:31:08.628Z [service] [null] [wallet] [INFO] [index.js] App started on port 3000
-2023-05-10T11:31:08.653Z [service] [null] [wallet] [INFO] [mongodb-connection.js] Mongoose default connection is open to mongodb://localhost:24000/employee?authsource=admin
+2023-05-10T11:40:41.110Z [service] [null] [Employee-management] [INFO] [index.js] App started on port 3000
+2023-05-10T11:40:41.136Z [service] [null] [Employee-management] [INFO] [mongodb-connection.js] Mongoose default connection is open to mongodb://localhost:24000/employee?authsource=admin
 ```
 <span style="color:red">NOTE: If MongoDB is already setup you can change the password inside 'wallet/config/default.json'</span>
 
