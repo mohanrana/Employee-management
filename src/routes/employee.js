@@ -3,8 +3,9 @@ const { Logger } = require('motifer');
 const logger = Logger.getLogger(__filename);
 const employee = require('../service/employee-service');
 const validation = require('../validations/employee-validator');
+const  { Response } = require('./../utils/responses');
 
-router.post('/employee', async (req, res, next) => {
+router.post('/add', async (req, res, next) => {
     const errors = await validation.employeDetailsValidation(req);
     if (!errors.isEmpty()) {
         logger.debug('Validation Errors are:', errors);
@@ -14,13 +15,14 @@ router.post('/employee', async (req, res, next) => {
     try {
         const response = await employee.saveEmployee(req.body);
 
-        res.status(201).json(`Employee details saved successfully.`);
+        return res.status(201).json(new Response('Success', "Employee details saved successfully."));
+
     } catch (error) {
         next(error);
     }
 });
 
-router.get('/employee', async (req, res, next) => {
+router.get('/list', async (req, res, next) => {
     const errors = await validation.getEmployeDetailsValidation(req);
     if (!errors.isEmpty()) {
         logger.debug('Validation Errors are:', errors);
@@ -30,7 +32,7 @@ router.get('/employee', async (req, res, next) => {
     try {
         const response = await employee.getEmployee(req.query);
 
-        res.status(201).json(response);
+        return res.status(200).json(new Response('Success', "The employee records.", response));
     } catch (error) {
         next(error);
     }

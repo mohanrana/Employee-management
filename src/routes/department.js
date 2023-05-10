@@ -3,8 +3,9 @@ const { Logger } = require('motifer');
 const logger = Logger.getLogger(__filename);
 const department = require('../service/department-service');
 const validation = require('../validations/department-validator');
+const  { Response } = require('./../utils/responses');
 
-router.post('/department', async (req, res, next) => {
+router.post('/add', async (req, res, next) => {
     const errors = await validation.departmentDetailsValidation(req);
     if (!errors.isEmpty()) {
         logger.debug('Validation Errors are:', errors);
@@ -12,25 +13,23 @@ router.post('/department', async (req, res, next) => {
         return next({ message: errors.array()[0].msg, statusCode: 400 });
     }
     try {
-        const response = await department.saveDepartment(req.body);
+        await department.saveDepartment(req.body);
 
-        return res.status(201).json(`Department details are saved successfully.`);
+        return res.status(201).json(new Response('Success', "Department created successfully"));
     } catch (error) {
-        next(error);
+        if(error.code === 11000) {
+            return next({ message: 'Department already exists', statusCode: 400 });
+        }
+
+        return next(error);
     }
 });
 
-router.get('/department', async (req, res, next) => {
-    // const errors = await validation.getDepartmentValidation(req);
-    // if (!errors.isEmpty()) {
-    //     logger.debug('Validation Errors are:', errors);
-
-    //     return next({ message: errors.array()[0].msg, statusCode: 400 });
-    // }
+router.get('/list', async (req, res, next) => {
     try {
         const response = await department.getDepartment(req.query);
 
-        res.status(200).json(response);
+        return res.status(200).json(new Response('Success', "The department records.", response));
     } catch (error) {
         next(error);
     }

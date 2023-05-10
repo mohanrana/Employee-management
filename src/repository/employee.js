@@ -1,8 +1,10 @@
 const Employee = require('../models/employee');
+const mogoose = require('mongoose');
 
 const saveEmployeeInfo = async (employee) => {
-    var employee = new Employee(employee);
-    const response = await employee.save(employee);
+    employee.department_id = new mogoose.Types.ObjectId(employee.department_id);
+    const employeee = new Employee(employee);
+    const response = await employeee.save(employee);
     return response;
 };
 
@@ -25,14 +27,19 @@ const getEmployeeInfo = async (employee) => {
     }
     const result = [];
     response.forEach((employee) => {
-        result.push({
+        const obj = {
             employee_id: employee._id,
             first_name: employee.first_name,
             last_name: employee.last_name,
             email_address: employee.email_address,
             department_id: employee.department_id,
-            department_name: employee.department_info[0].department_name
-        });
+            department_name: 'Not assigned'
+        }
+        if (employee.department_info && employee.department_info.length) {
+            obj['department_name'] = employee.department_info[0].department_name;
+        }
+
+        result.push(obj);
     });
 
     return result;

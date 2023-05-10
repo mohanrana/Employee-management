@@ -4,10 +4,12 @@ const routes = require('./src/routes');
 const { exceptionHandler } = require('./src/utils/exception-handler');
 const { initializeServices } = require('./src/startup');
 const middlewares = require('./src/middlewares');
+const swagger = require('./src/utils/swagger-client');
 
 const createApp = async () => {
   const { app } = await initializeServices();
   app.use(middlewares.router);
+  app.use(swagger.router);
   app.use('/', routes);
   app.use(exceptionHandler);
   app.listen(config.get('server.port'), () => {
