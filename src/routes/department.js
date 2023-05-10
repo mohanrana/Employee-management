@@ -14,17 +14,17 @@ router.post('/department', async (req, res, next) => {
     try {
         const response = await department.saveDepartment(req.body);
 
-        res.status(201).json(`Department details saved successfully.`);
+        return res.status(201).json(`Department details are saved successfully.`);
     } catch (error) {
         next(error);
     }
 });
 
-router.get('/', async (req, res, next) => {
+router.get('/department', async (req, res, next) => {
     try {
-        const response = await employee.getEmployee(req.body);
+        const response = await department.getDepartment(req.body);
 
-        res.status(201).json(response);
+        res.status(200).json(response);
     } catch (error) {
         next(error);
     }

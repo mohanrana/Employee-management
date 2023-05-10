@@ -1,20 +1,21 @@
-const employeeRepository = require('../repository/employee');
+const departmentRepository = require('../repository/department');
 const { Logger } = require('motifer');
 const logger = Logger.getLogger(__filename);
 
-const saveEmployee = async (employee) => {
-    logger.debug('Employee details are:', employee);
-    const response = await employeeRepository.saveEmployeeInfo(employee);
-     return response;
+const saveDepartment = async (department) => {
+    logger.debug('Department details are:', department);
+    const response = await departmentRepository.saveDepartmentInfo(department);
+
+    return response;
 };
 
-const getEmployee = async (employee) => {
-    logger.debug('Employee details are:', employee);
-    const response = await employeeRepository.getEmployeeInfo(employee);
+const getDepartment = async () => {
+    const response = await departmentRepository.getDepartmentInfo();
+    
      return response;
 };
 
 module.exports = {
-    saveEmployee,
-    getEmployee
+    saveDepartment,
+    getDepartment
 };
